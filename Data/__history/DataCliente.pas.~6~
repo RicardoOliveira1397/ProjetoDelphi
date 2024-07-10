@@ -1,0 +1,18 @@
+unit DataCliente;
+
+interface
+
+uses
+   SysUtils, Classes, DB, ADODB, uCliente;
+
+type
+  TDataCliente = class
+    private
+    public
+      function buscarCliente(Cliente : TModelCliente) : TADOQuery;
+
+  end;
+
+implementation
+
+end.

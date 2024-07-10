@@ -1,0 +1,19 @@
+unit ClienteController;
+
+interface
+
+uses
+  SysUtils, Classes, DB, ADODB, ;
+
+type
+  TController = class
+    private
+      {Private declarations}
+    public
+      {Public declarations}
+      function buscarClientes(Cliente : TModelCliente) : TADOQuery
+  end;
+
+implementation
+
+end.

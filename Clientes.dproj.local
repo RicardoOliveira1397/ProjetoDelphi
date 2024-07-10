@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BorlandProject>
+	<Transactions>
+    <Transaction>2024/07/10 09:27:00.972.pas,C:\Users\supor\OneDrive\Documentos\RAD Studio\Projects\Unit1.pas=C:\Projetos\ProjetoCliente\View\UFrmMainView.pas</Transaction>
+    <Transaction>2024/07/10 09:27:00.972.dfm,C:\Users\supor\OneDrive\Documentos\RAD Studio\Projects\Unit1.dfm=C:\Projetos\ProjetoCliente\View\UFrmMainView.dfm</Transaction>
+    <Transaction>2024/07/10 09:27:28.719.dproj,C:\Users\supor\OneDrive\Documentos\RAD Studio\Projects\Project1.dproj=C:\Projetos\ProjetoCliente\Clientes.dproj</Transaction>
+    <Transaction>2024/07/10 09:34:43.386.pas,C:\Projetos\ProjetoCliente\Unit1.pas=C:\Projetos\ProjetoCliente\Controllers\ClienteController.pas</Transaction>
+    <Transaction>2024/07/10 10:03:58.307.pas,C:\Projetos\ProjetoCliente\Unit1.pas=C:\Projetos\ProjetoCliente\Data\SqlServerConnection.pas</Transaction>
+    <Transaction>2024/07/10 10:03:58.307.dfm,C:\Projetos\ProjetoCliente\Unit1.dfm=C:\Projetos\ProjetoCliente\Data\SqlServerConnection.dfm</Transaction>
+    <Transaction>2024/07/10 10:39:40.454.pas,C:\Projetos\ProjetoCliente\Unit1.pas=C:\Projetos\ProjetoCliente\View\UFrmViewCadastroCliente.pas</Transaction>
+    <Transaction>2024/07/10 10:39:40.454.dfm,C:\Projetos\ProjetoCliente\Unit1.dfm=C:\Projetos\ProjetoCliente\View\UFrmViewCadastroCliente.dfm</Transaction>
+    <Transaction>2024/07/10 10:40:01.447.pas,C:\Projetos\ProjetoCliente\View\UFrmMainView.pas=C:\Projetos\ProjetoCliente\View\UFrmViewMain.pas</Transaction>
+    <Transaction>2024/07/10 10:40:01.447.dfm,C:\Projetos\ProjetoCliente\View\UFrmMainView.dfm=C:\Projetos\ProjetoCliente\View\UFrmViewMain.dfm</Transaction>
+    <Transaction>2024/07/10 10:47:36.738.pas,C:\Projetos\ProjetoCliente\Unit1.pas=C:\Projetos\ProjetoCliente\Model\Cliente.pas</Transaction>
+    <Transaction>2024/07/10 10:50:59.640.pas,C:\Projetos\ProjetoCliente\Model\Cliente.pas=C:\Projetos\ProjetoCliente\Model\uCliente.pas</Transaction>
+    <Transaction>2024/07/10 10:55:40.306.pas,C:\Projetos\ProjetoCliente\Unit1.pas=C:\Projetos\ProjetoCliente\Data\uDataCliente.pas</Transaction>
+    <Transaction>2024/07/10 10:56:20.038.pas,C:\Projetos\ProjetoCliente\Data\uDataCliente.pas=C:\Projetos\ProjetoCliente\Data\DataCliente.pas</Transaction>
+  </Transactions>
+</BorlandProject>

@@ -1,0 +1,9 @@
+unit Cliente;
+
+interface
+
+type
+  TModelCliente = Class
+implementation
+
+end.

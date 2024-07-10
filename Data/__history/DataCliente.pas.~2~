@@ -1,0 +1,14 @@
+unit DataCliente;
+
+interface
+
+type
+  DataCliente = class
+    private
+    public
+
+  end;
+
+implementation
+
+end.

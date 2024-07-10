@@ -1,0 +1,24 @@
+unit UFrmMainView;
+
+interface
+
+uses
+  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
+  Dialogs;
+
+type
+  TMainMenu = class(TForm)
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  MainMenu: TMainMenu;
+
+implementation
+
+{$R *.dfm}
+
+end.

@@ -1,0 +1,15 @@
+unit Cliente;
+
+interface
+
+type
+  TModelCliente = Class
+
+  private
+
+  public
+
+  End;
+implementation
+
+end.
