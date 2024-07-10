@@ -6,10 +6,11 @@ type
   TModelCliente = Class
 
   private
-    Id        :Integer;
-    Nome      :String;
-    Tele0fone  :String;
+
   public
+    Id         :Integer;
+    Nome       :String;
+    Telefone   :String;
 
   End;
 implementation

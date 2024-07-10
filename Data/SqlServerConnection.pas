@@ -6,7 +6,7 @@ uses
   SysUtils, Classes, DB, ADODB;
 
 type
-  TDataModule1 = class(TDataModule)
+  TTransaction = class(TDataModule)
     uSqlConnection: TADOConnection;
   private
     { Private declarations }
@@ -15,7 +15,7 @@ type
   end;
 
 var
-  DataModule1: TDataModule1;
+  Transaction: TTransaction;
 
 implementation
 

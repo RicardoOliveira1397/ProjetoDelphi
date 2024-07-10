@@ -4,7 +4,9 @@ interface
 
 uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
-  Dialogs, ExtCtrls, ComCtrls, StdCtrls, Grids, DBGrids;
+  Dialogs, ExtCtrls, ComCtrls, StdCtrls, Grids, DBGrids, ClienteController, uCliente,
+  DB, ADODB;
+
 
 type
   TFrmViewCadastroCliente = class(TForm)
@@ -20,10 +22,15 @@ type
     DBGrid1: TDBGrid;
     Panel2: TPanel;
     Panel3: TPanel;
-    Button6: TButton;
-    LabeledEdit1: TLabeledEdit;
+    btnPesquisar: TButton;
+    lbPesquisar: TLabeledEdit;
+    dataSource: TDataSource;
+    procedure btnPesquisarClick(Sender: TObject);
   private
     { Private declarations }
+    clienteIn : TModelCliente;
+    clienteController : TClienteController;
+    procedure pesquisar;
   public
     { Public declarations }
   end;
@@ -34,5 +41,23 @@ var
 implementation
 
 {$R *.dfm}
+
+{ TFrmViewCadastroCliente }
+
+procedure TFrmViewCadastroCliente.btnPesquisarClick(Sender: TObject);
+begin
+ pesquisar;
+end;
+
+procedure TFrmViewCadastroCliente.pesquisar;
+var
+  resultado: TADOQuery;
+begin
+    clienteController := TClienteController.Create;
+    clienteIn := TModelCliente.Create;
+    clienteIn.Nome := Trim(lbPesquisar.Text);
+    resultado := clienteController.buscarCliente(clienteIn);
+    dataSource.DataSet := resultado;
+end;
 
 end.
