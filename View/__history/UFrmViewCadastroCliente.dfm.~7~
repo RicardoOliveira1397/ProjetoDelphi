@@ -71,6 +71,7 @@ object FrmViewCadastroCliente: TFrmViewCadastroCliente
     ActivePage = TabSheet1
     Align = alClient
     TabOrder = 1
+    ExplicitTop = -6
     object TabSheet1: TTabSheet
       Caption = 'Listagem'
       ExplicitLeft = 0
@@ -95,31 +96,13 @@ object FrmViewCadastroCliente: TFrmViewCadastroCliente
         Height = 65
         Align = alTop
         TabOrder = 1
-        ExplicitTop = -6
-        object Button6: TButton
-          Left = 263
-          Top = 21
-          Width = 77
-          Height = 25
-          Caption = 'PESQUISAR'
-          TabOrder = 0
-        end
-        object LabeledEdit1: TLabeledEdit
-          Left = 20
-          Top = 23
-          Width = 237
-          Height = 21
-          EditLabel.Width = 101
-          EditLabel.Height = 13
-          EditLabel.Caption = 'Digite para pesquisar'
-          TabOrder = 1
-        end
+        ExplicitWidth = 481
       end
     end
     object TabSheet2: TTabSheet
-      Caption = 'Dados'
+      Caption = 'TabSheet2'
       ImageIndex = 1
-      ExplicitLeft = 0
+      ExplicitLeft = 8
       ExplicitTop = 22
       object Panel3: TPanel
         Left = 0
