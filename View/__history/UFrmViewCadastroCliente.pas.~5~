@@ -4,7 +4,7 @@ interface
 
 uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
-  Dialogs, ExtCtrls, ComCtrls, StdCtrls, Grids, DBGrids;
+  Dialogs, ExtCtrls, ComCtrls, StdCtrls;
 
 type
   TFrmViewCadastroCliente = class(TForm)
@@ -17,11 +17,6 @@ type
     PageControl1: TPageControl;
     TabSheet1: TTabSheet;
     TabSheet2: TTabSheet;
-    DBGrid1: TDBGrid;
-    Panel2: TPanel;
-    Panel3: TPanel;
-    Button6: TButton;
-    LabeledEdit1: TLabeledEdit;
   private
     { Private declarations }
   public

@@ -20,8 +20,6 @@ type
     DBGrid1: TDBGrid;
     Panel2: TPanel;
     Panel3: TPanel;
-    Button6: TButton;
-    LabeledEdit1: TLabeledEdit;
   private
     { Private declarations }
   public
