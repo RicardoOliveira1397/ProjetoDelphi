@@ -2,7 +2,7 @@ object FrmViewCadastroCliente: TFrmViewCadastroCliente
   Left = 0
   Top = 0
   Caption = 'CADASTRO CLIENTE'
-  ClientHeight = 421
+  ClientHeight = 300
   ClientWidth = 900
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -16,12 +16,11 @@ object FrmViewCadastroCliente: TFrmViewCadastroCliente
   TextHeight = 13
   object Panel1: TPanel
     Left = 0
-    Top = 360
+    Top = 239
     Width = 900
     Height = 61
     Align = alBottom
     TabOrder = 0
-    ExplicitLeft = -8
     object Button1: TButton
       Left = 24
       Top = 16
@@ -67,20 +66,19 @@ object FrmViewCadastroCliente: TFrmViewCadastroCliente
     Left = 0
     Top = 0
     Width = 900
-    Height = 360
+    Height = 239
     ActivePage = TabSheet1
     Align = alClient
     TabOrder = 1
     object TabSheet1: TTabSheet
       Caption = 'Listagem'
-      ExplicitLeft = 0
-      ExplicitTop = 22
       object DBGrid1: TDBGrid
         Left = 0
         Top = 65
         Width = 892
-        Height = 267
+        Height = 146
         Align = alClient
+        DataSource = dataSource
         TabOrder = 0
         TitleFont.Charset = DEFAULT_CHARSET
         TitleFont.Color = clWindowText
@@ -95,16 +93,16 @@ object FrmViewCadastroCliente: TFrmViewCadastroCliente
         Height = 65
         Align = alTop
         TabOrder = 1
-        ExplicitTop = -6
-        object Button6: TButton
+        object btnPesquisar: TButton
           Left = 263
           Top = 21
           Width = 77
           Height = 25
           Caption = 'PESQUISAR'
           TabOrder = 0
+          OnClick = btnPesquisarClick
         end
-        object LabeledEdit1: TLabeledEdit
+        object lbPesquisar: TLabeledEdit
           Left = 20
           Top = 23
           Width = 237
@@ -120,7 +118,9 @@ object FrmViewCadastroCliente: TFrmViewCadastroCliente
       Caption = 'Dados'
       ImageIndex = 1
       ExplicitLeft = 0
-      ExplicitTop = 22
+      ExplicitTop = 0
+      ExplicitWidth = 0
+      ExplicitHeight = 332
       object Panel3: TPanel
         Left = 0
         Top = 0
@@ -131,5 +131,9 @@ object FrmViewCadastroCliente: TFrmViewCadastroCliente
         TabOrder = 0
       end
     end
+  end
+  object dataSource: TDataSource
+    Left = 352
+    Top = 45
   end
 end

@@ -1,0 +1,25 @@
+object Transaction: TTransaction
+  Left = 0
+  Top = 0
+  ClientHeight = 141
+  ClientWidth = 303
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'Tahoma'
+  Font.Style = []
+  OldCreateOrder = False
+  PixelsPerInch = 96
+  TextHeight = 13
+  object uSqlConnection: TADOConnection
+    Connected = True
+    ConnectionString = 
+      'Provider=SQLOLEDB.1;Password=Ff6791485;Persist Security Info=Tru' +
+      'e;User ID=sa;Initial Catalog=Teste;Data Source=DESKTOP-091EO3S\S' +
+      'ERVERTESTE'
+    Provider = 'SQLOLEDB.1'
+    Left = 112
+    Top = 64
+  end
+end

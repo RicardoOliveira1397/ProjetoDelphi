@@ -1,0 +1,33 @@
+unit uBusinessCliente;
+
+interface
+
+uses
+  SysUtils, Classes, DB, ADODB, uCliente, uDataCliente;
+
+Type
+  TBusinessCliente = Class
+    private
+    public
+      function buscarCliente(buscarClienteIn : TModelCliente) : TADOQuery;
+  End;
+
+implementation
+
+{ TBusinessCliente }
+
+function TBusinessCliente.buscarCliente(buscarClienteIn: TModelCliente): TADOQuery;
+var
+  resultado :TADOQuery;
+begin
+  if Trim(buscarClienteIn.Nome) <> '' then
+    begin
+      resultado := uDataCliente.DataCliente.buscarClienteByNome(buscarClienteIn.Nome);
+    end
+  else
+  begin
+    resultado := uDataCliente.DataCliente.buscarCliente();
+  end;
+end;
+
+end.

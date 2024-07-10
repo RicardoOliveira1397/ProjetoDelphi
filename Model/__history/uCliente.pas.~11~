@@ -1,0 +1,20 @@
+unit uCliente;
+
+interface
+
+type
+  TModelCliente = Class
+
+  private
+    Id         :Integer;
+    Nome       :String;
+    Telefone   :String;
+  public
+    Id         :Integer;
+    Nome       :String;
+    Telefone   :String;
+
+  End;
+implementation
+
+end.

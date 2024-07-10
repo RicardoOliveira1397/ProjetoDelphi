@@ -1,0 +1,33 @@
+unit uDataCliente;
+
+interface
+
+uses
+  SysUtils, Classes, DB, ADODB, uCliente;
+
+type
+  TDataCliente = class
+    buscarTodosClientes: TADOQuery;
+    buscarClienteByNome: TADOQuery;
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+    function buscarCliente(Cliente : TModelCliente) : TADOQuery;
+  end;
+
+var
+  DataCliente: TDataCliente;
+
+implementation
+
+{$R *.dfm}
+
+{ TDataModule2 }
+
+function TDataCliente.buscarCliente(Cliente: TModelCliente): TADOQuery;
+begin
+//
+end;
+
+end.

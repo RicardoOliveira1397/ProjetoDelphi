@@ -1,0 +1,23 @@
+program Clientes;
+
+uses
+  Forms,
+  UFrmViewMain in 'View\UFrmViewMain.pas' {FrmMainMenu},
+  ClienteController in 'Controllers\ClienteController.pas',
+  SqlServerConnection in 'Data\SqlServerConnection.pas' {DataModule1: TDataModule},
+  UFrmViewCadastroCliente in 'View\UFrmViewCadastroCliente.pas' {FrmViewCadastroCliente},
+  uCliente in 'Model\uCliente.pas',
+  uDataCliente in 'Data\uDataCliente.pas' {DataCliente: TDataModule},
+  uBusinessCliente in 'Business\uBusinessCliente.pas';
+
+{$R *.res}
+
+begin
+  Application.Initialize;
+  Application.MainFormOnTaskbar := True;
+  Application.CreateForm(TFrmMainMenu, FrmMainMenu);
+  //Application.CreateForm(Ttransaction, Transaction);
+  Application.CreateForm(TFrmViewCadastroCliente, FrmViewCadastroCliente);
+  Application.CreateForm(TDataCliente, DataCliente);
+  Application.Run;
+end.

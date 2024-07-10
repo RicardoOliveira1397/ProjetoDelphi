@@ -1,0 +1,15 @@
+object DataModule2: TDataModule2
+  OldCreateOrder = False
+  Height = 151
+  Width = 413
+  object buscarTodosClientes: TADOQuery
+    Parameters = <>
+    Left = 56
+    Top = 56
+  end
+  object buscarClienteByNome: TADOQuery
+    Parameters = <>
+    Left = 168
+    Top = 64
+  end
+end

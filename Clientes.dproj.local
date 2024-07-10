@@ -15,5 +15,20 @@
     <Transaction>2024/07/10 10:50:59.640.pas,C:\Projetos\ProjetoCliente\Model\Cliente.pas=C:\Projetos\ProjetoCliente\Model\uCliente.pas</Transaction>
     <Transaction>2024/07/10 10:55:40.306.pas,C:\Projetos\ProjetoCliente\Unit1.pas=C:\Projetos\ProjetoCliente\Data\uDataCliente.pas</Transaction>
     <Transaction>2024/07/10 10:56:20.038.pas,C:\Projetos\ProjetoCliente\Data\uDataCliente.pas=C:\Projetos\ProjetoCliente\Data\DataCliente.pas</Transaction>
+    <Transaction>2024/07/10 14:20:03.777.pas,C:\Projetos\ProjetoCliente\Unit2.pas=C:\Projetos\ProjetoCliente\Data\DataCliente2.pas</Transaction>
+    <Transaction>2024/07/10 14:20:03.777.dfm,C:\Projetos\ProjetoCliente\Unit2.dfm=C:\Projetos\ProjetoCliente\Data\DataCliente2.dfm</Transaction>
+    <Transaction>2024/07/10 14:21:20.604.pas,C:\Projetos\ProjetoCliente\Data\DataCliente.pas=</Transaction>
+    <Transaction>2024/07/10 14:23:03.247.pas,C:\Projetos\ProjetoCliente\Data\DataCliente2.pas=C:\Projetos\ProjetoCliente\Data\DataCliente.pas</Transaction>
+    <Transaction>2024/07/10 14:23:03.247.dfm,C:\Projetos\ProjetoCliente\Data\DataCliente2.dfm=C:\Projetos\ProjetoCliente\Data\DataCliente.dfm</Transaction>
+    <Transaction>2024/07/10 14:23:03.260.pas,C:\Projetos\ProjetoCliente\Data\DataCliente.pas=C:\Projetos\ProjetoCliente\Data\DataCliente2.pas</Transaction>
+    <Transaction>2024/07/10 14:23:03.260.dfm,C:\Projetos\ProjetoCliente\Data\DataCliente.dfm=C:\Projetos\ProjetoCliente\Data\DataCliente2.dfm</Transaction>
+    <Transaction>2024/07/10 14:23:33.403.pas,C:\Projetos\ProjetoCliente\Data\DataCliente2.pas=C:\Projetos\ProjetoCliente\Data\DataCliente.pas</Transaction>
+    <Transaction>2024/07/10 14:23:33.403.dfm,C:\Projetos\ProjetoCliente\Data\DataCliente2.dfm=C:\Projetos\ProjetoCliente\Data\DataCliente.dfm</Transaction>
+    <Transaction>2024/07/10 14:31:29.409.pas,C:\Projetos\ProjetoCliente\Data\DataCliente.pas=</Transaction>
+    <Transaction>2024/07/10 14:31:29.409.dfm,C:\Projetos\ProjetoCliente\Data\DataCliente.dfm=</Transaction>
+    <Transaction>2024/07/10 14:33:54.690.pas,C:\Projetos\ProjetoCliente\Unit2.pas=C:\Projetos\ProjetoCliente\Data\uDataCliente.pas</Transaction>
+    <Transaction>2024/07/10 14:33:54.690.dfm,C:\Projetos\ProjetoCliente\Unit2.dfm=C:\Projetos\ProjetoCliente\Data\uDataCliente.dfm</Transaction>
+    <Transaction>2024/07/10 15:27:17.033.pas,C:\Projetos\ProjetoCliente\Unit1.pas=C:\Projetos\ProjetoCliente\uBusinessCliente.pas</Transaction>
+    <Transaction>2024/07/10 15:27:27.050.pas,C:\Projetos\ProjetoCliente\uBusinessCliente.pas=C:\Projetos\ProjetoCliente\Business\uBusinessCliente.pas</Transaction>
   </Transactions>
 </BorlandProject>

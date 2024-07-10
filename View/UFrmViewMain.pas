@@ -4,7 +4,7 @@ interface
 
 uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
-  Dialogs, Menus;
+  Dialogs, Menus, UFrmViewCadastroCliente;
 
 type
   TFrmMainMenu = class(TForm)
@@ -14,6 +14,7 @@ type
     RELATRIOS1: TMenuItem;
     CLIENTE1: TMenuItem;
     CLIENTES1: TMenuItem;
+    procedure CLIENTE1Click(Sender: TObject);
   private
     { Private declarations }
   public
@@ -26,5 +27,13 @@ var
 implementation
 
 {$R *.dfm}
+
+procedure TFrmMainMenu.CLIENTE1Click(Sender: TObject);
+begin
+  FrmViewCadastroCliente := TFrmViewCadastroCliente.Create(Self);
+  UFrmViewCadastroCliente.FrmViewCadastroCliente.ShowModal;
+  UFrmViewCadastroCliente.FrmViewCadastroCliente.Release;
+
+end;
 
 end.
