@@ -53,7 +53,6 @@ object FrmViewCadastroCliente: TFrmViewCadastroCliente
       Height = 25
       Caption = 'GRAVAR'
       TabOrder = 3
-      OnClick = btnGravarClick
     end
     object btnExcluir: TButton
       Left = 348
@@ -143,7 +142,7 @@ object FrmViewCadastroCliente: TFrmViewCadastroCliente
         object lbtelefone: TLabeledEdit
           Left = 20
           Top = 80
-          Width = 149
+          Width = 121
           Height = 21
           EditLabel.Width = 42
           EditLabel.Height = 13

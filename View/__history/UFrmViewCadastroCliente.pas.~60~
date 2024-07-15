@@ -16,7 +16,7 @@ type
     btnCancelar: TButton;
     btnGravar: TButton;
     btnExcluir: TButton;
-    pgControlCadastroCliente: TPageControl;
+    PageControl1: TPageControl;
     TabSheet1: TTabSheet;
     TabSheet2: TTabSheet;
     dbGrid: TDBGrid;
@@ -29,8 +29,6 @@ type
     lbtelefone: TLabeledEdit;
     procedure btnPesquisarClick(Sender: TObject);
     procedure btnExcluirClick(Sender: TObject);
-    procedure btnIncluirClick(Sender: TObject);
-    procedure btnGravarClick(Sender: TObject);
   private
     { Private declarations }
     resultado: TADOQuery;
@@ -56,20 +54,6 @@ begin
   clienteIn := TModelCliente.Create;
   clienteIn.Id := resultado.FieldByName('Id').AsInteger;
   clienteController.excluirCliente(clienteIn.Id);
-end;
-
-procedure TFrmViewCadastroCliente.btnGravarClick(Sender: TObject);
-begin
-  clienteController := TClienteController.Create;
-  clienteIn := TModelCliente.Create;
-  clienteIn.Nome := lbNome.Text;
-  clienteIn.Telefone := lbTelefone.Text;
-  clienteController.incluirCliente(clienteIn);
-end;
-
-procedure TFrmViewCadastroCliente.btnIncluirClick(Sender: TObject);
-begin
-  pgControlCadastroCliente.ActivePage := pgControlCadastroCliente.Pages[1];
 end;
 
 procedure TFrmViewCadastroCliente.btnPesquisarClick(Sender: TObject);

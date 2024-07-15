@@ -62,9 +62,6 @@ procedure TFrmViewCadastroCliente.btnGravarClick(Sender: TObject);
 begin
   clienteController := TClienteController.Create;
   clienteIn := TModelCliente.Create;
-  clienteIn.Nome := lbNome.Text;
-  clienteIn.Telefone := lbTelefone.Text;
-  clienteController.incluirCliente(clienteIn);
 end;
 
 procedure TFrmViewCadastroCliente.btnIncluirClick(Sender: TObject);

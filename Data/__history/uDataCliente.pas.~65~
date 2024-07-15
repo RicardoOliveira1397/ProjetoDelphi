@@ -100,9 +100,9 @@ begin
       Close;
       SQL.Clear;
         txtSql := 'INSERT INTO clientes ' +
-                  '(nome, telefone) ' +
+                  '(id, nome, telefone) ' +
                   'VALUES' +
-                  '(:nome, :telefone)';
+                  '(default, :nome, :telefone)';
                   SQL.Add(txtSql);
                   Parameters.ParamByName('nome').DataType := ftString;
                   Parameters.ParamByName('nome').Value := ClienteIn.Nome;
