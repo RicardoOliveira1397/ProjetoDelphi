@@ -28,7 +28,6 @@ object FrmViewCadastroCliente: TFrmViewCadastroCliente
       Height = 25
       Caption = 'INCLUIR'
       TabOrder = 0
-      OnClick = btnIncluirClick
     end
     object btnAlterar: TButton
       Left = 105
@@ -53,7 +52,6 @@ object FrmViewCadastroCliente: TFrmViewCadastroCliente
       Height = 25
       Caption = 'GRAVAR'
       TabOrder = 3
-      OnClick = btnGravarClick
     end
     object btnExcluir: TButton
       Left = 348
@@ -128,11 +126,12 @@ object FrmViewCadastroCliente: TFrmViewCadastroCliente
         Width = 892
         Height = 211
         Align = alClient
+        Caption = 'pnlCadastro'
         TabOrder = 0
         ExplicitTop = -2
         object lbNome: TLabeledEdit
           Left = 20
-          Top = 24
+          Top = 32
           Width = 253
           Height = 21
           EditLabel.Width = 27
@@ -142,8 +141,8 @@ object FrmViewCadastroCliente: TFrmViewCadastroCliente
         end
         object lbtelefone: TLabeledEdit
           Left = 20
-          Top = 80
-          Width = 149
+          Top = 96
+          Width = 121
           Height = 21
           EditLabel.Width = 42
           EditLabel.Height = 13

@@ -30,7 +30,6 @@ type
     procedure btnPesquisarClick(Sender: TObject);
     procedure btnExcluirClick(Sender: TObject);
     procedure btnIncluirClick(Sender: TObject);
-    procedure btnGravarClick(Sender: TObject);
   private
     { Private declarations }
     resultado: TADOQuery;
@@ -56,15 +55,6 @@ begin
   clienteIn := TModelCliente.Create;
   clienteIn.Id := resultado.FieldByName('Id').AsInteger;
   clienteController.excluirCliente(clienteIn.Id);
-end;
-
-procedure TFrmViewCadastroCliente.btnGravarClick(Sender: TObject);
-begin
-  clienteController := TClienteController.Create;
-  clienteIn := TModelCliente.Create;
-  clienteIn.Nome := lbNome.Text;
-  clienteIn.Telefone := lbTelefone.Text;
-  clienteController.incluirCliente(clienteIn);
 end;
 
 procedure TFrmViewCadastroCliente.btnIncluirClick(Sender: TObject);

@@ -14,7 +14,6 @@ type
       {Public declarations}
       function buscarCliente(buscarClienteIn: TModelCliente) : TADOQuery;
       procedure excluirCliente(id: integer);
-      procedure incluirCliente(ClienteIn: TModelCliente);
   end;
 
 implementation
@@ -24,16 +23,6 @@ implementation
 function TClienteController.buscarCliente(buscarClienteIn: TModelCliente): TADOQuery;
 begin
   Result := FBusinessCliente.buscarCliente(buscarClienteIn);
-end;
-
-procedure TClienteController.excluirCliente(id: Integer);
-begin
-  uDataCliente.DataCliente.excluirCliente(id);
-end;
-
-procedure TClienteController.incluirCliente(ClienteIn: TModelCliente);
-begin
-  uDataCliente.DataCliente.incluirCliente(ClienteIn);
 end;
 
 end.

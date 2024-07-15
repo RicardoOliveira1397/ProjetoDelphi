@@ -97,8 +97,6 @@ begin
   try
     With quBuscarCliente do
       begin
-      Close;
-      SQL.Clear;
         txtSql := 'INSERT INTO clientes ' +
                   '(nome, telefone) ' +
                   'VALUES' +

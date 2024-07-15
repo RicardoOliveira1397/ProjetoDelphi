@@ -53,7 +53,6 @@ object FrmViewCadastroCliente: TFrmViewCadastroCliente
       Height = 25
       Caption = 'GRAVAR'
       TabOrder = 3
-      OnClick = btnGravarClick
     end
     object btnExcluir: TButton
       Left = 348

@@ -97,18 +97,10 @@ begin
   try
     With quBuscarCliente do
       begin
-      Close;
-      SQL.Clear;
         txtSql := 'INSERT INTO clientes ' +
                   '(nome, telefone) ' +
                   'VALUES' +
-                  '(:nome, :telefone)';
-                  SQL.Add(txtSql);
-                  Parameters.ParamByName('nome').DataType := ftString;
-                  Parameters.ParamByName('nome').Value := ClienteIn.Nome;
-                  Parameters.ParamByName('telefone').DataType := ftString;
-                  Parameters.ParamByName('telefone').Value := ClienteIn.Telefone;
-                  ExecSQL;
+                  '(:nome, :telefone)'
       end;
   finally
     ShowMessage('Registro inserido com sucesso!');
