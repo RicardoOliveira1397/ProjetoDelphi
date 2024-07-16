@@ -12,6 +12,7 @@ object FrmViewCadastroCliente: TFrmViewCadastroCliente
   Font.Style = []
   OldCreateOrder = False
   Position = poScreenCenter
+  WindowState = wsMaximized
   PixelsPerInch = 96
   TextHeight = 13
   object Panel1: TPanel
@@ -37,6 +38,7 @@ object FrmViewCadastroCliente: TFrmViewCadastroCliente
       Height = 25
       Caption = 'ALTERAR'
       TabOrder = 1
+      OnClick = btnAlterarClick
     end
     object btnCancelar: TButton
       Left = 186
@@ -70,7 +72,7 @@ object FrmViewCadastroCliente: TFrmViewCadastroCliente
     Top = 0
     Width = 900
     Height = 239
-    ActivePage = TabSheet2
+    ActivePage = TabSheet1
     Align = alClient
     TabOrder = 1
     object TabSheet1: TTabSheet
@@ -115,13 +117,20 @@ object FrmViewCadastroCliente: TFrmViewCadastroCliente
           EditLabel.Caption = 'Digite para pesquisar'
           TabOrder = 1
         end
+        object btnExportar: TButton
+          Left = 346
+          Top = 21
+          Width = 75
+          Height = 25
+          Caption = 'EXPORTAR'
+          TabOrder = 2
+          OnClick = btnExportarClick
+        end
       end
     end
     object TabSheet2: TTabSheet
       Caption = 'Cadastro'
       ImageIndex = 1
-      ExplicitLeft = 0
-      ExplicitTop = 22
       object pnlCadastro: TPanel
         Left = 0
         Top = 0
@@ -129,7 +138,6 @@ object FrmViewCadastroCliente: TFrmViewCadastroCliente
         Height = 211
         Align = alClient
         TabOrder = 0
-        ExplicitTop = -2
         object lbNome: TLabeledEdit
           Left = 20
           Top = 24

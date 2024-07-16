@@ -5,7 +5,7 @@ interface
 uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
   Dialogs, ExtCtrls, ComCtrls, StdCtrls, Grids, DBGrids, ClienteController, uCliente,
-  DB, ADODB;
+  DB, ADODB, LIBWIN, UEnumTipoOperacao, UFrmViewMenuExportar;
 
 
 type
@@ -27,12 +27,16 @@ type
     dataSource: TDataSource;
     lbNome: TLabeledEdit;
     lbtelefone: TLabeledEdit;
+    btnExportar: TButton;
     procedure btnPesquisarClick(Sender: TObject);
     procedure btnExcluirClick(Sender: TObject);
     procedure btnIncluirClick(Sender: TObject);
     procedure btnGravarClick(Sender: TObject);
+    procedure btnExportarClick(Sender: TObject);
+    procedure btnAlterarClick(Sender: TObject);
   private
     { Private declarations }
+    operacao: TEnumTipoOperacao;
     resultado: TADOQuery;
     clienteIn : TModelCliente;
     clienteController : TClienteController;
@@ -50,6 +54,20 @@ implementation
 
 { TFrmViewCadastroCliente }
 
+procedure TFrmViewCadastroCliente.btnAlterarClick(Sender: TObject);
+begin
+  operacao := Atualizar;
+  clienteController := TClienteController.Create;
+  clienteIn := TModelCliente.Create;
+  clienteIn.Id := resultado.FieldByName('Id').AsInteger;
+  clienteIn.Nome := resultado.FieldByName('nome').AsString;
+  clienteIn.Telefone := resultado.FieldByName('telefone').AsString;
+
+  pgControlCadastroCliente.ActivePage := pgControlCadastroCliente.Pages[1];
+  lbNome.Text := clienteIn.Nome;
+  lbtelefone.Text := clienteIn.Telefone;
+end;
+
 procedure TFrmViewCadastroCliente.btnExcluirClick(Sender: TObject);
 begin
   clienteController := TClienteController.Create;
@@ -64,17 +82,26 @@ begin
   clienteIn := TModelCliente.Create;
   clienteIn.Nome := lbNome.Text;
   clienteIn.Telefone := lbTelefone.Text;
-  clienteController.incluirCliente(clienteIn);
+  clienteController.gravarCadastroCliente(clienteIn, operacao);
 end;
 
 procedure TFrmViewCadastroCliente.btnIncluirClick(Sender: TObject);
 begin
+  operacao := Inserir;
   pgControlCadastroCliente.ActivePage := pgControlCadastroCliente.Pages[1];
 end;
 
 procedure TFrmViewCadastroCliente.btnPesquisarClick(Sender: TObject);
 begin
  pesquisar;
+end;
+
+procedure TFrmViewCadastroCliente.btnExportarClick(Sender: TObject);
+begin
+  //LIBWIN.imprimirPlanilha(resultado, 'TESTE', 'Teste');
+  ViewMenuExportar := TViewMenuExportar.Create(Self);
+  ViewMenuExportar.ShowModal;
+  ViewMenuExportar.Release;
 end;
 
 procedure TFrmViewCadastroCliente.pesquisar;
@@ -87,7 +114,12 @@ begin
 
     With dbGrid do
     begin
+      Columns[0].Title.Caption := 'Registro';
+      Columns[1].Title.Caption := 'Nome Cliente';
+      Columns[2].Title.Caption := 'Contato';
 
+      Refresh;
+      Update;
     end;
 end;
 

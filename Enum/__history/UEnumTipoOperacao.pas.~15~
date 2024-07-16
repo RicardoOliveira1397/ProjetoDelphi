@@ -1,0 +1,17 @@
+unit UEnumtipoOperacao;
+
+interface
+
+uses
+  SysUtils, Classes, DB;
+
+type
+  TEnumTipoOperacao = (
+    batata,
+    boba,
+    misera
+  );
+
+implementation
+
+end.

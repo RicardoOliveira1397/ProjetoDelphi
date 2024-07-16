@@ -45,6 +45,14 @@
       
       
       
+      
+      
+      
+      
+      
+      
+      
+      
       <Excluded_Packages Name="$(BDS)\bin\dcloffice2k100.bpl">Microsoft Office 2000 Sample Automation Server Wrapper Components</Excluded_Packages>
       <Excluded_Packages Name="$(BDS)\bin\dclofficexp100.bpl">Microsoft Office XP Sample Automation Server Wrapper Components</Excluded_Packages>
     </Excluded_Packages><Source><Source Name="MainSource">Clientes.dpr</Source></Source></Delphi.Personality><ModelSupport>False</ModelSupport></BorlandProject></BorlandProject>
@@ -64,7 +72,9 @@
       <Form>DataCliente</Form>
       <DesignClass>TDataModule</DesignClass>
     </DCCReference>
+    <DCCReference Include="Enum\UEnumTipoOperacao.pas" />
     <DCCReference Include="Model\uCliente.pas" />
+    <DCCReference Include="Util\LIBWIN.PAS" />
     <DCCReference Include="View\UFrmViewCadastroCliente.pas">
       <Form>FrmViewCadastroCliente</Form>
     </DCCReference>
