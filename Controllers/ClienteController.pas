@@ -16,7 +16,6 @@ type
       procedure excluirCliente(id: integer);
       procedure incluirCliente(ClienteIn: TModelCliente);
       procedure gravarCadastroCliente(ClienteIn: TModelCliente; operacao: TEnumTipoOperacao);
-      procedure exportarArquivoCliente();
   end;
 
 implementation
@@ -31,11 +30,6 @@ end;
 procedure TClienteController.excluirCliente(id: Integer);
 begin
   clienteBusiness.excluirCliente(id);
-end;
-
-procedure TClienteController.exportarArquivoCliente;
-begin
-//
 end;
 
 procedure TClienteController.gravarCadastroCliente(ClienteIn: TModelCliente;

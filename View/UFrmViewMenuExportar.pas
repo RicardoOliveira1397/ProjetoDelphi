@@ -4,7 +4,8 @@ interface
 
 uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
-  Dialogs, StdCtrls, ExtCtrls, ClienteController, UEnumTipoArquivo;
+  Dialogs, StdCtrls, ExtCtrls, ClienteController, UEnumTipoArquivo, Libwin,
+  ADODB, DB, uCliente;
 
 type
   TViewMenuExportar = class(TForm)
@@ -15,8 +16,9 @@ type
     procedure FormCreate(Sender: TObject);
   private
     { Private declarations }
+    clienteIn :TModelCliente;
     clienteController :TClienteController;
-    enumTipoArquivo :TEnumTipoArquivo;
+
   public
     { Public declarations }
   end;
@@ -29,15 +31,35 @@ implementation
 {$R *.dfm}
 
 procedure TViewMenuExportar.btnExportarArquivoClick(Sender: TObject);
+var
+  qSQL :TADOQuery;
+  itemIndex: Integer;
 begin
   clienteController := TClienteController.Create;
-  clienteController.exportarArquivoCliente();
+  clienteIn := TModelCliente.Create;
+  qSQL := clienteController.buscarCliente(clienteIn);
+  itemIndex := RadioGroup1.ItemIndex;
+  if itemIndex <> -1 then
+    begin
+      case itemIndex of
+        0:
+          libwin.imprimirPlanilha(qSQL, 'Relatorio', 'Testando');
+        1:
+          libwin.imprimirTXT(qSQL);
+      end;
+    end;
 end;
 
 procedure TViewMenuExportar.FormCreate(Sender: TObject);
+var
+  enumValue: TEnumTipoArquivo;
 begin
- enumTipoArquivo := TEnumTipoArquivo;
-    
+  RadioGroup1.Items.Clear;
+
+ for enumValue := Low(TEnumTipoArquivo) to High(TEnumTipoArquivo) do
+ begin
+  RadioGroup1.Items.Add(TipoArquivoNomes[enumValue]);
+ end;
 end;
 
 end.

@@ -34,5 +34,8 @@
     <Transaction>2024/07/16 08:32:27.018.pas,C:\Projetos\ProjetoCliente\Util\uUtil.pas=</Transaction>
     <Transaction>2024/07/16 09:45:03.509.pas,C:\Projetos\ProjetoCliente\Unit1.pas=C:\Projetos\ProjetoCliente\Enum\UEnumTipoOperacao.pas</Transaction>
     <Transaction>2024/07/16 09:55:02.226.pas,C:\Projetos\ProjetoCliente\Enum\UEnumTipoOperacao.pas=</Transaction>
+    <Transaction>2024/07/16 11:56:42.571.pas,C:\Projetos\ProjetoCliente\Unit1.pas=C:\Projetos\ProjetoCliente\View\UFrmViewMenuExportar.pas</Transaction>
+    <Transaction>2024/07/16 11:56:42.571.dfm,C:\Projetos\ProjetoCliente\Unit1.dfm=C:\Projetos\ProjetoCliente\View\UFrmViewMenuExportar.dfm</Transaction>
+    <Transaction>2024/07/16 12:16:28.757.pas,C:\Projetos\ProjetoCliente\Enum\UEnumTipoOperacao.pas=C:\Projetos\ProjetoCliente\Enum\UEnumTipoArquivo.pas</Transaction>
   </Transactions>
 </BorlandProject>
