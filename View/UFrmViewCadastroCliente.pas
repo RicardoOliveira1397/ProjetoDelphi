@@ -4,8 +4,8 @@ interface
 
 uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
-  Dialogs, ExtCtrls, ComCtrls, StdCtrls, Grids, DBGrids, ClienteController, uCliente,
-  DB, ADODB, LIBWIN, UEnumTipoOperacao, UFrmViewMenuExportar;
+  Dialogs, ExtCtrls, ComCtrls, StdCtrls, Grids, DBGrids, ClienteController, uCliente, ADODB, LIBWIN, UEnumTipoOperacao, UFrmViewMenuExportar,
+  DB;
 
 
 type

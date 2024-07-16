@@ -4,13 +4,15 @@ interface
 
 uses
   SysUtils, WinTypes, WinProcs, Messages, Classes, Graphics, Controls,
-  Forms, Dialogs, StdCtrls, Mask, FileCtrl, ExtCtrls, IniFiles,
+  Forms, Dialogs, StdCtrls, Mask, ExtCtrls, IniFiles,
   DB, DBTables, Buttons, DBClient, SHDocVw, ActiveX,
   Math, Variants, ComObj, Shellapi, Winsock, Grids, DBGrids,
   IdHashMessageDigest, StrUtils, ADODB, IdCoderMIME;
 
 Function trocaVirgula(Valor: string): String;
 procedure imprimirPlanilha(instrucaoSQl: TADOQuery; title, tipo: String);
+procedure imprimirTXT(instrucaoSQl: TADOQuery);
+//procedure imprimirReport(instrucaoSQl: TADOQuery);
 
 implementation
 
@@ -95,6 +97,40 @@ begin
      Result := trim(StringReplace(Valor,',','.',[rfReplaceall]))
   else
      Result := '0.00';
+end;
+
+procedure imprimirTXT(instrucaoSQl: TADOQuery);
+var
+  path: string;
+  Arquivo: TStringList;
+  I: Integer;
+  Line: string;
+begin
+  path := GetCurrentDir + '\' + 'Exportar';
+  try
+    ForceDirectories(path);
+  except
+    on E: Exception do
+      ShowMessage('Erro ao criar pasta');
+  end;
+
+  Arquivo := TStringList.Create;
+  try
+    // Percorre os registros da query
+    instrucaoSQl.First;
+    while not instrucaoSQl.Eof do
+    begin
+      Line := '';
+      // Ajuste para garantir que cada campo tenha um tamanho mínimo e alinhamento adequado
+      Line := Format('%-10s %-50s %-40s', [instrucaoSQl.Fields[0].AsString, instrucaoSQl.Fields[1].AsString, instrucaoSQl.Fields[2].AsString]);
+      Arquivo.Add(Line); // Adiciona a linha no arquivo texto
+      instrucaoSQl.Next;
+    end;
+    // Salva o arquivo texto
+    Arquivo.SaveToFile(path + '\' + 'texto.txt');
+  finally
+    Arquivo.Free;
+  end;
 end;
 
 end.

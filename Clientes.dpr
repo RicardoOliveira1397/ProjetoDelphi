@@ -10,7 +10,9 @@ uses
   uDataCliente in 'Data\uDataCliente.pas' {DataCliente: TDataModule},
   uBusinessCliente in 'Business\uBusinessCliente.pas',
   LIBWIN in 'Util\LIBWIN.PAS',
-  UEnumTipoOperacao in 'Enum\UEnumTipoOperacao.pas';
+  UEnumTipoOperacao in 'Enum\UEnumTipoOperacao.pas',
+  UFrmViewMenuExportar in 'View\UFrmViewMenuExportar.pas' {ViewMenuExportar},
+  UEnumTipoArquivo in 'Enum\UEnumTipoArquivo.pas';
 
 {$R *.res}
 
@@ -21,5 +23,6 @@ begin
   Application.CreateForm(TTransaction, Transaction);
   Application.CreateForm(TFrmViewCadastroCliente, FrmViewCadastroCliente);
   Application.CreateForm(TDataCliente, DataCliente);
+  Application.CreateForm(TViewMenuExportar, ViewMenuExportar);
   Application.Run;
 end.

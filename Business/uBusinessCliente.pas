@@ -33,7 +33,7 @@ end;
 
 procedure TBusinessCliente.excluirCliente(id: Integer);
 begin
-  excluirCliente(id);
+  uDataCliente.DataCliente.excluirCliente(id);
 end;
 
 procedure TBusinessCliente.gravarCadastroCliente(ClienteIn: TModelCliente;

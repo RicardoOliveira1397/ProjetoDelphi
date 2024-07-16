@@ -15,13 +15,17 @@ object ViewMenuExportar: TViewMenuExportar
   PixelsPerInch = 96
   TextHeight = 13
   object RadioGroup1: TRadioGroup
-    Left = 0
-    Top = 0
-    Width = 505
-    Height = 190
+    AlignWithMargins = True
+    Left = 50
+    Top = 3
+    Width = 405
+    Height = 184
+    Margins.Left = 50
+    Margins.Right = 50
     Align = alClient
     TabOrder = 0
-    ExplicitTop = 2
+    ExplicitLeft = 55
+    ExplicitTop = 6
   end
   object Panel1: TPanel
     Left = 0
@@ -30,7 +34,6 @@ object ViewMenuExportar: TViewMenuExportar
     Height = 41
     Align = alBottom
     TabOrder = 2
-    ExplicitTop = 189
   end
   object btnExportarArquivo: TButton
     Left = 136

@@ -72,6 +72,7 @@
       <Form>DataCliente</Form>
       <DesignClass>TDataModule</DesignClass>
     </DCCReference>
+    <DCCReference Include="Enum\UEnumTipoArquivo.pas" />
     <DCCReference Include="Enum\UEnumTipoOperacao.pas" />
     <DCCReference Include="Model\uCliente.pas" />
     <DCCReference Include="Util\LIBWIN.PAS" />
@@ -80,6 +81,9 @@
     </DCCReference>
     <DCCReference Include="View\UFrmViewMain.pas">
       <Form>FrmMainMenu</Form>
+    </DCCReference>
+    <DCCReference Include="View\UFrmViewMenuExportar.pas">
+      <Form>ViewMenuExportar</Form>
     </DCCReference>
   </ItemGroup>
 </Project>

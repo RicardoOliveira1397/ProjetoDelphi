@@ -13,7 +13,7 @@ type
   );
 
 const
-  Contagem = Ord(High(TEnumTipoArquivo));
+  TipoArquivoNomes: array[TEnumTipoArquivo] of string = ('Excel','TXT','Report');
 
 implementation
 
