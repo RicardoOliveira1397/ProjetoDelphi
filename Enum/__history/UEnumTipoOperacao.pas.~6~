@@ -1,0 +1,14 @@
+unit UEnumtipoOperacao;
+
+interface
+
+uses
+  SysUtils, Classes, DB;
+
+Type
+  TEnumTipoOperacao = (Insert = 1, Update = 2, Delete = 4);
+
+var
+  TipoOperacao: TEnumTipoOperacao;
+
+end.

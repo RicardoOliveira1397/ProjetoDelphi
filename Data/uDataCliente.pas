@@ -16,6 +16,7 @@ type
     function buscarClienteByNome(nome :String) : TADOQuery;
     procedure excluirCliente(id :integer);
     procedure incluirCliente(ClienteIn :TModelCliente);
+    procedure alterarCliente(ClienteIn :TModelCliente);
   end;
 
 var
@@ -26,6 +27,31 @@ implementation
 {$R *.dfm}
 
 { TDataCliente }
+
+procedure TDataCliente.alterarCliente(ClienteIn: TModelCliente);
+var
+txtSql :String;
+begin
+  Try
+    With quBuscarCliente do
+    begin
+      txtSql := 'UPDATE clientes ' +
+                'SET ' +
+                ' Id         = :id ' +
+                ',nome       = :nome ' +
+                ',telefone   = :telefone';
+      SQL.Add(txtSql);
+      Parameters.ParamByName('id').DataType := ftInteger;
+      Parameters.ParamByName('id').Value := ClienteIn.Id;
+      Parameters.ParamByName('nome').DataType := ftString;
+      Parameters.ParamByName('nome').Value := ClienteIn.Nome;
+      Parameters.ParamByName('telefone').DataType := ftString;
+      Parameters.ParamByName('telefone').Value := ClienteIn.Telefone;
+      ExecSQL;
+    end;
+  Finally
+  End;
+end;
 
 function TDataCliente.buscarCliente: TADOQuery;
 var

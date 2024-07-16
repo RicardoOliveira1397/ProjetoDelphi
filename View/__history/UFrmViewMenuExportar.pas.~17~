@@ -1,0 +1,39 @@
+unit UFrmViewMenuExportar;
+
+interface
+
+uses
+  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
+  Dialogs, StdCtrls, ExtCtrls, ClienteController;
+
+type
+  TViewMenuExportar = class(TForm)
+    RadioGroup1: TRadioGroup;
+    rbtnExcel: TRadioButton;
+    rbtnTxt: TRadioButton;
+    rbtnReport: TRadioButton;
+    btnExportarArquivo: TButton;
+    Panel1: TPanel;
+    procedure btnExportarArquivoClick(Sender: TObject);
+  private
+    { Private declarations }
+    clienteController :TClienteController;
+  public
+    { Public declarations }
+  end;
+
+var
+  ViewMenuExportar: TViewMenuExportar;
+
+implementation
+
+{$R *.dfm}
+
+procedure TViewMenuExportar.btnExportarArquivoClick(Sender: TObject);
+begin
+  clienteController := TClienteController.Create;
+  RadioGroup1;  
+  clienteController.exportarArquivoCliente();
+end;
+
+end.

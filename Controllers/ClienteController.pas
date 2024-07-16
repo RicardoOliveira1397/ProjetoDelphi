@@ -3,18 +3,20 @@ unit ClienteController;
 interface
 
 uses
-  SysUtils, Classes, DB, ADODB, uCliente, uDataCliente, uBusinessCliente;
+  SysUtils, Classes, DB, ADODB, uCliente, uDataCliente, uBusinessCliente, uEnumTipoOperacao;
 
 type
   TClienteController = class
     private
       {Private declarations}
-      FBusinessCliente: TBusinessCliente;
+      clienteBusiness :TBusinessCliente;
     public
       {Public declarations}
       function buscarCliente(buscarClienteIn: TModelCliente) : TADOQuery;
       procedure excluirCliente(id: integer);
       procedure incluirCliente(ClienteIn: TModelCliente);
+      procedure gravarCadastroCliente(ClienteIn: TModelCliente; operacao: TEnumTipoOperacao);
+      procedure exportarArquivoCliente();
   end;
 
 implementation
@@ -23,17 +25,28 @@ implementation
 
 function TClienteController.buscarCliente(buscarClienteIn: TModelCliente): TADOQuery;
 begin
-  Result := FBusinessCliente.buscarCliente(buscarClienteIn);
+  Result := clienteBusiness.buscarCliente(buscarClienteIn);
 end;
 
 procedure TClienteController.excluirCliente(id: Integer);
 begin
-  uDataCliente.DataCliente.excluirCliente(id);
+  clienteBusiness.excluirCliente(id);
+end;
+
+procedure TClienteController.exportarArquivoCliente;
+begin
+//
+end;
+
+procedure TClienteController.gravarCadastroCliente(ClienteIn: TModelCliente;
+  operacao: TEnumTipoOperacao);
+begin
+  clienteBusiness.gravarCadastroCliente(ClienteIn, operacao);
 end;
 
 procedure TClienteController.incluirCliente(ClienteIn: TModelCliente);
 begin
-  uDataCliente.DataCliente.incluirCliente(ClienteIn);
+  clienteBusiness.incluirCliente(ClienteIn);
 end;
 
 end.

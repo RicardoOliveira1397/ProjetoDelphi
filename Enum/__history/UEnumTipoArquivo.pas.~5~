@@ -1,0 +1,17 @@
+unit UEnumTipoArquivo;
+
+interface
+
+uses
+  SysUtils, Classes, DB;
+
+type
+  TEnumTipoArquivo = (
+    Excel = 1,
+    TXT = 2,
+    Report = 3
+  );
+
+implementation
+
+end.

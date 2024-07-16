@@ -8,7 +8,9 @@ uses
   UFrmViewCadastroCliente in 'View\UFrmViewCadastroCliente.pas' {FrmViewCadastroCliente},
   uCliente in 'Model\uCliente.pas',
   uDataCliente in 'Data\uDataCliente.pas' {DataCliente: TDataModule},
-  uBusinessCliente in 'Business\uBusinessCliente.pas';
+  uBusinessCliente in 'Business\uBusinessCliente.pas',
+  LIBWIN in 'Util\LIBWIN.PAS',
+  UEnumTipoOperacao in 'Enum\UEnumTipoOperacao.pas';
 
 {$R *.res}
 

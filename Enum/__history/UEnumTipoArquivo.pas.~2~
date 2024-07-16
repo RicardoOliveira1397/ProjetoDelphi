@@ -1,0 +1,17 @@
+unit UEnumTipoArquivo;
+
+interface
+
+uses
+  SysUtils, Classes, DB;
+
+type
+  TEnumTipoArquivo = (
+    Inserir,
+    Atualizar,
+    Excluir
+  );
+
+implementation
+
+end.
