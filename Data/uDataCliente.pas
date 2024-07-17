@@ -17,6 +17,7 @@ type
     procedure excluirCliente(id :integer);
     procedure incluirCliente(ClienteIn :TModelCliente);
     procedure alterarCliente(ClienteIn :TModelCliente);
+    function importarTXT(arquivo: TStringList) :TADOQuery;
   end;
 
 var
@@ -114,6 +115,23 @@ begin
     finally
     ShowMessage('Registro excluído com sucesso!');
   end;
+end;
+
+function TDataCliente.importarTXT(arquivo: TStringList): TADOQuery;
+var
+  txtSql :String;
+begin
+  quBuscarCliente.Connection.BeginTrans;
+  try
+    With quBuscarCliente do
+    begin
+      Close;
+      SQL.Clear;
+      txtSql := '';
+    end;
+  except
+    quBuscarCliente.Connection.RollbackTrans;
+  end;  
 end;
 
 procedure TDataCliente.incluirCliente(ClienteIn: TModelCliente);

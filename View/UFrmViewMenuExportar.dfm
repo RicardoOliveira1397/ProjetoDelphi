@@ -24,7 +24,7 @@ object ViewMenuExportar: TViewMenuExportar
     Margins.Right = 50
     Align = alClient
     TabOrder = 0
-    ExplicitLeft = 55
+    ExplicitLeft = 45
     ExplicitTop = 6
   end
   object Panel1: TPanel

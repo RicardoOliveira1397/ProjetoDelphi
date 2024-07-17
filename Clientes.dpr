@@ -12,7 +12,9 @@ uses
   LIBWIN in 'Util\LIBWIN.PAS',
   UEnumTipoOperacao in 'Enum\UEnumTipoOperacao.pas',
   UFrmViewMenuExportar in 'View\UFrmViewMenuExportar.pas' {ViewMenuExportar},
-  UEnumTipoArquivo in 'Enum\UEnumTipoArquivo.pas';
+  UEnumTipoArquivo in 'Enum\UEnumTipoArquivo.pas',
+  uReportCliente in 'Reports\uReportCliente.pas' {formReportCliente},
+  UFrmViewMovimentoImportar in 'View\UFrmViewMovimentoImportar.pas' {ViewImportar};
 
 {$R *.res}
 
@@ -24,5 +26,7 @@ begin
   Application.CreateForm(TFrmViewCadastroCliente, FrmViewCadastroCliente);
   Application.CreateForm(TDataCliente, DataCliente);
   Application.CreateForm(TViewMenuExportar, ViewMenuExportar);
+  Application.CreateForm(TformReportCliente, formReportCliente);
+  Application.CreateForm(TViewImportar, ViewImportar);
   Application.Run;
 end.

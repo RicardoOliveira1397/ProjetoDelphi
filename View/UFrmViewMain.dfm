@@ -27,6 +27,10 @@ object FrmMainMenu: TFrmMainMenu
     end
     object MOVIMENTO1: TMenuItem
       Caption = 'MOVIMENTO'
+      object IMPORTAR1: TMenuItem
+        Caption = 'IMPORTAR'
+        OnClick = IMPORTAR1Click
+      end
     end
     object RELATRIOS1: TMenuItem
       Caption = 'RELAT'#211'RIOS'

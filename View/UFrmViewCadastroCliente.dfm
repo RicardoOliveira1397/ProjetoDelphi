@@ -77,6 +77,10 @@ object FrmViewCadastroCliente: TFrmViewCadastroCliente
     TabOrder = 1
     object TabSheet1: TTabSheet
       Caption = 'Pesquisa'
+      ExplicitLeft = 0
+      ExplicitTop = 0
+      ExplicitWidth = 0
+      ExplicitHeight = 0
       object dbGrid: TDBGrid
         Left = 0
         Top = 65
