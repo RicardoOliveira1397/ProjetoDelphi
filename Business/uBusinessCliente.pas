@@ -3,7 +3,7 @@ unit uBusinessCliente;
 interface
 
 uses
-  SysUtils, Classes, DB, ADODB, uCliente, uDataCliente, UEnumTipoOperacao;
+  SysUtils, Classes, DB, ADODB, Contnrs, uCliente, uDataCliente, UEnumTipoOperacao;
 
 Type
   TBusinessCliente = Class
