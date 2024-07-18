@@ -1,0 +1,155 @@
+unit uBusinessCliente;
+
+interface
+
+uses
+  SysUtils, Classes, DB, ADODB, Contnrs, uCliente, uDataCliente, UEnumTipoOperacao,
+  ComObj, Dialogs, Variants, strUtils, XMLDoc, XMLIntf;
+
+Type
+  TBusinessCliente = Class
+    private
+    public
+      function buscarCliente(buscarClienteIn : TModelCliente) : TADOQuery;
+      procedure gravarCadastroCliente(ClienteIn: TModelCliente; operacao: TEnumTipoOperacao);
+      procedure excluirCliente(id :Integer);
+      procedure incluirCliente(clienteIn: TModelCliente);
+      function importarTXT(arquivo: TStringList) :TObjectList;
+      function importarExcel(arquivo: String) :TObjectList;
+      function importarXml(arquivo: string) :TObjectList;
+  End;
+
+implementation
+
+{ TBusinessCliente }
+
+function TBusinessCliente.buscarCliente(buscarClienteIn: TModelCliente): TADOQuery;
+begin
+  if Trim(buscarClienteIn.Nome) <> '' then
+    begin
+      Result := uDataCliente.DataCliente.buscarClienteByNome(buscarClienteIn.Nome);
+    end
+  else
+    begin
+      Result := uDataCliente.DataCliente.buscarCliente();
+  end;
+end;
+
+procedure TBusinessCliente.excluirCliente(id: Integer);
+begin
+  uDataCliente.DataCliente.excluirCliente(id);
+end;
+
+procedure TBusinessCliente.gravarCadastroCliente(ClienteIn: TModelCliente;
+  operacao: TEnumTipoOperacao);
+begin
+  case operacao of
+    Inserir:
+      uDataCliente.DataCliente.incluirCliente(ClienteIn);
+    Excluir:
+      uDataCliente.DataCliente.alterarCliente(ClienteIn);
+  end;
+end;
+
+function TBusinessCliente.importarExcel(arquivo: String) :TObjectList;
+var
+  Excel, Planilha :OleVariant;
+  Linha :integer;
+  Cliente :TModelCliente;
+  ListaObjetos :TObjectList;
+begin
+  try
+    Excel := CreateOleObject('Excel.Application');
+    Excel.Workbooks.Open(arquivo);
+    ListaObjetos := TObjectList.Create;
+    Planilha := Excel.Workbooks[1].Sheets[1];
+
+    for Linha := 3 to Planilha.UsedRange.Rows.Count do
+      begin
+        Cliente := TModelCliente.Create;
+
+        Cliente.Id := Planilha.Cells[Linha, 1].Text;
+        Cliente.Nome := Planilha.Cells[Linha, 2].Text;
+        Cliente.Telefone := Planilha.Cells[Linha, 3].Text;
+
+        ListaObjetos.Add(Cliente);
+      end;
+    Result := ListaObjetos;
+  finally
+   Excel.Quit; // Fecha o Excel após o término do processamento
+   Excel := Unassigned; // Libera a referência para o objeto Excel
+  end;
+end;
+
+function TBusinessCliente.importarTXT(arquivo: TStringList) :TObjectList;
+var
+  linha, nome, telefone: string;
+  id, i: Integer;
+  Cliente :TModelCliente;
+  Lista :TObjectList;
+begin
+  Lista := TObjectList.Create;
+  for i := 0 to arquivo.Count -1 do
+    begin
+      Cliente := TModelCliente.Create;
+      linha := arquivo[i];
+
+      id := Copy(linha, 0,11);
+      nome := Copy(linha, 11, 51);
+      telefone := Copy(linha, 62, 30);
+
+      Cliente.Id := StrToInt(id);
+      Cliente.Nome := nome;
+      Cliente.Telefone := telefone;
+      Lista.Add(Cliente);
+    end;
+    Result := Lista;
+end;
+
+function TBusinessCliente.importarXml(arquivo: string): TObjectList;
+var
+  Xml :IXMLDocument;
+  RootNode, ClienteNode, ChildNode :IXMLNode;
+  i :integer;
+  Cliente :TModelCliente;
+  ListaCliente :TObjectList;
+begin
+  if not FileExists(arquivo) then
+    ShowMessage('Arquivo nao encontrado');
+
+  Xml := TXMLDocument.Create(nil);
+  Xml.LoadFromFile(arquivo);
+  Xml.Active := True;
+  ListaCliente := TObjectList.Create;
+
+  RootNode := Xml.DocumentElement;
+
+  for i := 0 to RootNode.ChildNodes.Count -1 do
+    begin
+      Cliente := TModelCliente.Create;
+      ClienteNode := RootNode.ChildNodes[i];
+
+      ChildNode := ClienteNode.ChildNodes.FindNode('ID');
+      if Assigned(ChildNode) then
+        Cliente.Id := StrToInt(ChildNode.Text);
+
+      ChildNode  := ClienteNode.ChildNodes.FindNode('Nome');
+      if Assigned(ChildNode) then
+        Cliente.Nome := ChildNode.Text;
+
+      ChildNode := ClienteNode.ChildNodes.FindNode('Telefone');
+      if Assigned(ChildNode) then
+        Cliente.Telefone := ChildNode.Text;
+
+      ListaCliente.Add(Cliente);
+    end;
+
+    Result := ListaCliente;
+end;
+
+procedure TBusinessCliente.incluirCliente(clienteIn: TModelCliente);
+begin
+  uDataCliente.DataCliente.incluirCliente(clienteIn);
+end;
+
+end.

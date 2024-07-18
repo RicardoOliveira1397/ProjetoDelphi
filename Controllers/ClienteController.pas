@@ -3,7 +3,7 @@ unit ClienteController;
 interface
 
 uses
-  SysUtils, Classes, DB, ADODB, uCliente, uDataCliente, uBusinessCliente, uEnumTipoOperacao;
+  SysUtils, Classes, DB, ADODB, uCliente, uDataCliente, uBusinessCliente, uEnumTipoOperacao, Contnrs;
 
 type
   TClienteController = class
@@ -15,6 +15,7 @@ type
       function buscarCliente(buscarClienteIn: TModelCliente) : TADOQuery;
       procedure excluirCliente(id: integer);
       procedure incluirCliente(ClienteIn: TModelCliente);
+      procedure incluirListaCliente(listaObj :TObjectList);
       procedure gravarCadastroCliente(ClienteIn: TModelCliente; operacao: TEnumTipoOperacao);
   end;
 
@@ -41,6 +42,11 @@ end;
 procedure TClienteController.incluirCliente(ClienteIn: TModelCliente);
 begin
   clienteBusiness.incluirCliente(ClienteIn);
+end;
+
+procedure TClienteController.incluirListaCliente(listaObj: TObjectList);
+begin
+  uDataCliente.DataCliente.incluirListaCliente(listaObj);
 end;
 
 end.

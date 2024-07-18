@@ -14,7 +14,8 @@ uses
   UFrmViewMenuExportar in 'View\UFrmViewMenuExportar.pas' {ViewMenuExportar},
   UEnumTipoArquivo in 'Enum\UEnumTipoArquivo.pas',
   uReportCliente in 'Reports\uReportCliente.pas' {formReportCliente},
-  UFrmViewMovimentoImportar in 'View\UFrmViewMovimentoImportar.pas' {ViewImportar};
+  UFrmViewMovimentoImportar in 'View\UFrmViewMovimentoImportar.pas' {ViewImportar},
+  ImportarClienteController in 'Controllers\ImportarClienteController.pas';
 
 {$R *.res}
 

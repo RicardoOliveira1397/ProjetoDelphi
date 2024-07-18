@@ -34,6 +34,7 @@ type
     procedure btnGravarClick(Sender: TObject);
     procedure btnExportarClick(Sender: TObject);
     procedure btnAlterarClick(Sender: TObject);
+    procedure dataSourceDataChange(Sender: TObject; Field: TField);
   private
     { Private declarations }
     operacao: TEnumTipoOperacao;
@@ -74,6 +75,8 @@ begin
   clienteIn := TModelCliente.Create;
   clienteIn.Id := resultado.FieldByName('Id').AsInteger;
   clienteController.excluirCliente(clienteIn.Id);
+
+  clienteController.buscarCliente(clienteIn);
 end;
 
 procedure TFrmViewCadastroCliente.btnGravarClick(Sender: TObject);
@@ -96,6 +99,19 @@ begin
  pesquisar;
 end;
 
+procedure TFrmViewCadastroCliente.dataSourceDataChange(Sender: TObject;
+  Field: TField);
+begin
+  if dbGrid.DataSource.DataSet.RecordCount > 0 then
+  begin
+    btnExportar.Visible := true;
+    btnExcluir.Enabled := True;
+    btnAlterar.Enabled := True;
+    btnExcluir.Enabled := True;
+    btnGravar.Enabled := True;
+  end
+end;
+
 procedure TFrmViewCadastroCliente.btnExportarClick(Sender: TObject);
 begin
   //LIBWIN.imprimirPlanilha(resultado, 'TESTE', 'Teste');
@@ -111,6 +127,7 @@ begin
     clienteIn.Nome := Trim(lbPesquisar.Text);
     resultado := clienteController.buscarCliente(clienteIn);
     dataSource.DataSet := resultado;
+    dbGrid.SetFocus;
 
     With dbGrid do
     begin
