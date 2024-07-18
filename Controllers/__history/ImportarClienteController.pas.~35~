@@ -1,0 +1,75 @@
+unit ImportarClienteController;
+
+interface
+
+uses
+  SysUtils, Classes, DB, ADODB, uCliente, uDataCliente, uBusinessCliente, Contnrs, XMLDoc, XMLIntf;
+
+type
+  TImportarClienteController = class
+    private
+    uBusinessCliente :TBusinessCliente;
+    public
+      procedure importarTXT(arquivo: TStringList);
+      function importarExcel(arquivo: String) :TObjectList;
+      function importarXml(arquivo :String) :TObjectList;
+  end;
+
+implementation
+
+{ TImportarClienteController }
+
+function TImportarClienteController.importarExcel(arquivo: String) :TObjectList;
+begin
+  Result := uBusinessCliente.importarExcel(arquivo);
+end;
+
+procedure TImportarClienteController.importarTXT(arquivo: TStringList);
+begin
+  uBusinessCliente.importarTXT(arquivo);
+end;
+
+function TImportarClienteController.importarXml(
+  arquivo: String): TObjectList;
+var
+  Xml :TXMLDocument;
+  RootNode, ClienteNode, ChildNode :IXMLNode;
+  i :integer;
+  Cliente :TModelCliente;
+  ListaCliente :TObjectList;
+begin
+  if not FileExists(arquivo) then
+    ShowMessage('Arquivo nao encontrado');
+  
+
+  Xml := TXMLDocument.Create(nil);
+  Xml.LoadFromFile(arquivo);
+  Xml.Active := True;
+  Cliente := TModelCliente.Create;
+  ListaCliente := TObjectList.Create;
+
+  RootNode := Xml.DocumentElement;
+
+  for i := 0 to RootNode.ChildNodes.Count -1 do
+    begin
+      ClienteNode := RootNode.ChildNodes[i];
+
+      ChildNode := ClienteNode.ChildNodes.FindNode('id');
+      if Assigned(ChildNode) then
+        Cliente.Id := StrToInt(ChildNode.Text);
+
+      ChildNode  := ClienteNode.ChildNodes.FindNode('nome');
+      if Assigned(ChildNode) then
+        Cliente.Nome := ChildNode.Text;
+
+      ChildNode := ClienteNode.ChildNodes.FindNode('telefone');
+      if Assigned(ChildNode) then
+        Cliente.Telefone := ChildNode.Text;
+
+      ListaCliente.Add(Cliente);
+    end;
+
+    Result := ListaCliente;
+end;
+
+end.
