@@ -12,7 +12,6 @@ uses
 Function trocaVirgula(Valor: string): String;
 procedure imprimirPlanilha(instrucaoSQl: TADOQuery; title, tipo: String);
 procedure imprimirTXT(instrucaoSQl: TADOQuery);
-//procedure imprimirReport(instrucaoSQl: TADOQuery);
 
 implementation
 
@@ -103,7 +102,6 @@ procedure imprimirTXT(instrucaoSQl: TADOQuery);
 var
   path: string;
   Arquivo: TStringList;
-  I: Integer;
   Line: string;
 begin
   path := GetCurrentDir + '\' + 'Exportar';

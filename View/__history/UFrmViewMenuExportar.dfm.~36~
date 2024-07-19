@@ -66,17 +66,15 @@ object ViewMenuExportar: TViewMenuExportar
   end
   object RvDataSetConnection1: TRvDataSetConnection
     RuntimeVisibility = rtDeveloper
-    DataSet = ADOQuery1
+    DataSet = quReport
     Left = 136
     Top = 152
   end
-  object ADOQuery1: TADOQuery
-    Active = True
+  object quReport: TADOQuery
     Connection = Transaction.uSqlConnection
-    CursorType = ctStatic
     Parameters = <>
     SQL.Strings = (
-      'SELECT Id, nome, telefone FROM clientes')
+      'SELECT id, nome, telefone FROM clientes')
     Left = 176
     Top = 152
   end

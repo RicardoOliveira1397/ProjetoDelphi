@@ -24,7 +24,7 @@ object ViewMenuExportar: TViewMenuExportar
     Margins.Right = 50
     Align = alClient
     TabOrder = 0
-    ExplicitLeft = 55
+    ExplicitLeft = 45
     ExplicitTop = 6
   end
   object Panel1: TPanel
@@ -34,7 +34,6 @@ object ViewMenuExportar: TViewMenuExportar
     Height = 41
     Align = alBottom
     TabOrder = 2
-    ExplicitTop = 187
   end
   object btnExportarArquivo: TButton
     Left = 136
@@ -44,5 +43,30 @@ object ViewMenuExportar: TViewMenuExportar
     Caption = 'EXPORTAR'
     TabOrder = 1
     OnClick = btnExportarArquivoClick
+  end
+  object RvProject1: TRvProject
+    Engine = RvSystem1
+    ProjectFile = 'C:\Projetos\ProjetoCliente\Reports\Clientes.rav'
+    Left = 56
+    Top = 152
+  end
+  object RvSystem1: TRvSystem
+    TitleSetup = 'Output Options'
+    TitleStatus = 'Report Status'
+    TitlePreview = 'Report Preview'
+    SystemFiler.StatusFormat = 'Generating page %p'
+    SystemPreview.ZoomFactor = 100.000000000000000000
+    SystemPrinter.ScaleX = 100.000000000000000000
+    SystemPrinter.ScaleY = 100.000000000000000000
+    SystemPrinter.StatusFormat = 'Printing page %p'
+    SystemPrinter.Title = 'Rave Report'
+    SystemPrinter.UnitsFactor = 1.000000000000000000
+    Left = 96
+    Top = 152
+  end
+  object RvDataSetConnection1: TRvDataSetConnection
+    RuntimeVisibility = rtDeveloper
+    Left = 136
+    Top = 152
   end
 end
