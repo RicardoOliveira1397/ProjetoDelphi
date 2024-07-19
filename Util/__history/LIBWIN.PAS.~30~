@@ -101,12 +101,19 @@ end;
 
 procedure imprimirTXT(instrucaoSQl: TADOQuery);
 var
-  path :string;
+  path: string;
   Arquivo: TStringList;
   I: Integer;
   Line: string;
 begin
   path := GetCurrentDir + '\' + 'Exportar';
+  try
+    ForceDirectories(path);
+  except
+    on E: Exception do
+      ShowMessage('Erro ao criar pasta');
+  end;
+
   Arquivo := TStringList.Create;
   try
     // Percorre os registros da query
@@ -114,16 +121,13 @@ begin
     while not instrucaoSQl.Eof do
     begin
       Line := '';
-      for I := 0 to instrucaoSQl.FieldCount - 1 do
-      begin
-        // Adiciona os campos separados por tabulação (ou outro delimitador)
-        Line := Line + instrucaoSQl.Fields[I].AsString + #9; // #9 é o caractere de tabulação
-      end;
-      Arquivo.Add(TrimRight(Line)); // Adiciona a linha no arquivo texto
+      // Ajuste para garantir que cada campo tenha um tamanho mínimo e alinhamento adequado
+      Line := Format('%-10s %-50s %-40s', [instrucaoSQl.Fields[0].AsString, instrucaoSQl.Fields[1].AsString, instrucaoSQl.Fields[2].AsString]);
+      Arquivo.Add(Line); // Adiciona a linha no arquivo texto
       instrucaoSQl.Next;
     end;
     // Salva o arquivo texto
-    Arquivo.SaveToFile(ARquivoTXT);
+    Arquivo.SaveToFile(path + '\' + 'texto.txt');
   finally
     Arquivo.Free;
   end;
