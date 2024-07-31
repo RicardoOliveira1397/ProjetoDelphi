@@ -20,7 +20,6 @@ type
     procedure btmGravarImportarClick(Sender: TObject);
   private
     ListaObj :TObjectList;
-    resultado :TADOQuery;
     clienteController: TClienteController;
     importarController: TImportarClienteController;
     tmpDataSource :TDataSource;
@@ -40,9 +39,7 @@ implementation
 procedure TViewImportar.btmGravarImportarClick(Sender: TObject);
 begin
   if DBGrid1.DataSource.DataSet.RecordCount = 0 then
-  begin
     ShowMessage('Não há dados para importar!');
-  end;
 
   try
     clienteController := TClienteController.Create;
@@ -53,50 +50,65 @@ end;
 
 procedure TViewImportar.btnImportarClick(Sender: TObject);
 var
-  t:textfile;
-  arquivotxt:TStringList;
-  clienteIn :TModelCliente;
-
+  t: textfile;
+  arquivotxt: TStringList;
 begin
- if OpenDialog1.Execute then
- begin
-   Edit1.Text := OpenDialog1.FileName;
-   AssignFile(t, OpenDialog1.FileName);
-   reset(t);
-
-   if SameText(ExtractFileExt(OpenDialog1.FileName), '.txt') then
+  try
+    if OpenDialog1.Execute then
     begin
+      Edit1.Text := OpenDialog1.FileName;
+      AssignFile(t, OpenDialog1.FileName);
+      reset(t);
+
+      if SameText(ExtractFileExt(OpenDialog1.FileName), '.txt') then
+      begin
         arquivotxt := TStringList.Create;
-        arquivotxt.LoadFromFile(OpenDialog1.FileName);
-        importarController := TImportarClienteController.Create;
-        clienteController := TClienteController.Create;
-        ListaObj := importarController.importarTXT(arquivotxt);
+        try
+          arquivotxt.LoadFromFile(OpenDialog1.FileName);
+          importarController := TImportarClienteController.Create;
+          try
+            ListaObj := importarController.importarTXT(arquivotxt);
 
-        tmpDataSource := criarDataSource(ListaObj);
-        DBGrid1.DataSource := tmpDataSource;
-    end
-   else if SameText(ExtractFileExt(OpenDialog1.FileName), '.xlsx') then
-    begin
-      importarController := TImportarClienteController.Create;
-      ListaObj := importarController.importarExcel(OpenDialog1.FileName);
-
-      tmpDataSource := criarDataSource(ListaObj);
-      DBGrid1.DataSource := tmpDataSource;
-    end
-    else if SameText(ExtractFileExt(OpenDialog1.FileName), '.xml') then
+            tmpDataSource := criarDataSource(ListaObj);
+            DBGrid1.DataSource := tmpDataSource;
+          finally
+            importarController.Free;
+          end;
+        finally
+          arquivotxt.Free;
+        end;
+      end
+      else if SameText(ExtractFileExt(OpenDialog1.FileName), '.xlsx') then
       begin
         importarController := TImportarClienteController.Create;
-        ListaObj := importarController.importarXml(OpenDialog1.FileName);
+        try
+          ListaObj := importarController.importarExcel(OpenDialog1.FileName);
 
-        tmpDataSource := criarDataSource(ListaObj);
-        DBGrid1.DataSource := tmpDataSource;
+          tmpDataSource := criarDataSource(ListaObj);
+          DBGrid1.DataSource := tmpDataSource;
+        finally
+          importarController.Free;
+        end;
       end
-    else
-    begin
-      ShowMessage('Arquivo inválido');
-    end;
+      else if SameText(ExtractFileExt(OpenDialog1.FileName), '.xml') then
+      begin
+        importarController := TImportarClienteController.Create;
+        try
+          ListaObj := importarController.importarXml(OpenDialog1.FileName);
 
- end;
+          tmpDataSource := criarDataSource(ListaObj);
+          DBGrid1.DataSource := tmpDataSource;
+        finally
+          importarController.Free;
+        end;
+      end
+      else
+        ShowMessage('Arquivo inválido');
+    end;
+  finally
+    btmGravarImportar.Visible := True;
+    CloseFile(t);
+  end;
 end;
 
 function TViewImportar.criarDataSource(ListaObj: TObjectList): TDataSource;

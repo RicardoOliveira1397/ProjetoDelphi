@@ -59,62 +59,46 @@ Begin
   End;
 End;
 
-function TDataCliente.buscarCliente: TADOQuery;
-var
-  txtSql: string;
-begin
-  Result := nil;
-  quBuscarCliente.Connection.BeginTrans;
-  try
-    with quBuscarCliente do
-    begin
+Function TDataCliente.buscarCliente: TADOQuery;
+Var
+  txtSql: String;
+Begin
+  Try
+    With quBuscarCliente Do
+    Begin
       Close;
       SQL.Clear;
-      txtSql := 'SELECT Id, nome, telefone ' +
-                'FROM clientes';
-      SQL.Text := txtSql;
-      Prepared := True;
+      SQL.Add('SELECT Id, nome, telefone ' +
+        'FROM clientes ' +
+        'WHERE numeroAWB = Teste');
       Open;
-      Result := quBuscarCliente;
-    end;
-    quBuscarCliente.Connection.CommitTrans;
-  except
-    on E: Exception do
-    begin
-      quBuscarCliente.Connection.RollbackTrans;
-      raise; // Re-raise the exception after rollback
-    end;
-  end;
-end;
+    End;
+    Result := quBuscarCliente;
+  Finally
+  End;
+End;
 
-function TDataCliente.buscarClienteByNome(nome: string): TADOQuery;
-begin
-  Result := nil;
-  quBuscarCliente.Connection.BeginTrans;
-  try
-    with quBuscarCliente do
-    begin
+Function TDataCliente.buscarClienteByNome(nome: String): TADOQuery;
+Var
+  txtSql: String;
+Begin
+  Try
+    With quBuscarCliente Do
+    Begin
       Close;
-      SQL.Text := 'SELECT id, nome, telefone ' +
-                  'FROM clientes ' +
-                  'WHERE nomes LIKE :nome';
+      SQL.Clear;
+      txtSql := 'SELECT id, nome, telefone ' +
+        'FROM clientes ' +
+        'WHERE nome LIKE :nome';
+      SQL.Add(txtSql);
       Parameters.ParamByName('nome').DataType := ftString;
       Parameters.ParamByName('nome').Value := '%' + nome + '%';
-
-      Prepared := True;
-
       Open;
-      Result := quBuscarCliente;
-    end;
-    quBuscarCliente.Connection.CommitTrans;
-  except
-    on E: Exception do
-    begin
-      quBuscarCliente.Connection.RollbackTrans;
-      raise;
-    end;
-  end;
-end;
+    End;
+    Result := quBuscarCliente;
+  Finally
+  End;
+End;
 
 Procedure TDataCliente.excluirCliente(id: integer);
 Var

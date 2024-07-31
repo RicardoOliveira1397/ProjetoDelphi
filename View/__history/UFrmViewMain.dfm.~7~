@@ -2,7 +2,7 @@ object FrmMainMenu: TFrmMainMenu
   Left = 0
   Top = 0
   Caption = 'M&M SISTEMAS'
-  ClientHeight = 307
+  ClientHeight = 275
   ClientWidth = 737
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -29,6 +29,7 @@ object FrmMainMenu: TFrmMainMenu
       Caption = 'MOVIMENTO'
       object IMPORTAR1: TMenuItem
         Caption = 'IMPORTAR'
+        OnClick = IMPORTAR1Click
       end
     end
     object RELATRIOS1: TMenuItem

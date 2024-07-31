@@ -97,7 +97,7 @@ begin
       Close;
       SQL.Text := 'SELECT id, nome, telefone ' +
                   'FROM clientes ' +
-                  'WHERE nomes LIKE :nome';
+                  'WHERE nome LIKE :nome';
       Parameters.ParamByName('nome').DataType := ftString;
       Parameters.ParamByName('nome').Value := '%' + nome + '%';
 

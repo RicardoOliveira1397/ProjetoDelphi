@@ -16,7 +16,7 @@ type
     CLIENTES1: TMenuItem;
     IMPORTAR1: TMenuItem;
     procedure CLIENTE1Click(Sender: TObject);
-    procedure IMPORTAR1Click(Sender: TObject);
+    procedure IMPORTAR1Click(Sender: TObjectw);
   private
     { Private declarations }
   public

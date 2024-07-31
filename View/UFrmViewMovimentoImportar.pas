@@ -1,14 +1,15 @@
-unit UFrmViewMovimentoImportar;
+Unit UFrmViewMovimentoImportar;
 
-interface
+Interface
 
-uses
+Uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
-  Dialogs, StdCtrls, Grids, DBGrids, ExtCtrls, Buttons, DB, ADODB, ImportarClienteController,
-  ClienteController, uCliente, Contnrs, ComObj, DBClient;
+  Dialogs, StdCtrls, Grids, DBGrids, ExtCtrls, Buttons, DB, ADODB,
+  ImportarClienteController, ClienteController, uCliente, Contnrs, ComObj,
+  DBClient;
 
-type
-  TViewImportar = class(TForm)
+Type
+  TViewImportar = Class(TForm)
     Panel1: TPanel;
     DBGrid1: TDBGrid;
     OpenDialog1: TOpenDialog;
@@ -16,127 +17,128 @@ type
     btnImportar: TButton;
     DataSourceImportar: TDataSource;
     btmGravarImportar: TButton;
-    procedure btnImportarClick(Sender: TObject);
-    procedure btmGravarImportarClick(Sender: TObject);
-  private
-    ListaObj :TObjectList;
+    Procedure btnImportarClick(Sender: TObject);
+    Procedure btmGravarImportarClick(Sender: TObject);
+  Private
+    ListaObj: TObjectList;
     clienteController: TClienteController;
     importarController: TImportarClienteController;
-    tmpDataSource :TDataSource;
+    tmpDataSource: TDataSource;
 
-    function criarDataSource(ListaObj :TObjectList) :TDataSource;
-  public
+    Function criarDataSource(ListaObj: TObjectList): TDataSource;
+  Public
     { Public declarations }
-  end;
+  End;
 
-var
+Var
   ViewImportar: TViewImportar;
 
-implementation
+Implementation
 
 {$R *.dfm}
 
-procedure TViewImportar.btmGravarImportarClick(Sender: TObject);
-begin
-  if DBGrid1.DataSource.DataSet.RecordCount = 0 then
+Procedure TViewImportar.btmGravarImportarClick(Sender: TObject);
+Begin
+  If DBGrid1.DataSource.DataSet.RecordCount = 0 Then
     ShowMessage('Não há dados para importar!');
 
-  try
+  Try
     clienteController := TClienteController.Create;
     clienteController.incluirListaCliente(ListaObj);
-  finally
-  end;
-end;
+  Finally
+  End;
+End;
 
-procedure TViewImportar.btnImportarClick(Sender: TObject);
-var
+Procedure TViewImportar.btnImportarClick(Sender: TObject);
+Var
   t: textfile;
   arquivotxt: TStringList;
-begin
-  try
-    if OpenDialog1.Execute then
-    begin
+Begin
+  Try
+    If OpenDialog1.Execute Then
+    Begin
       Edit1.Text := OpenDialog1.FileName;
       AssignFile(t, OpenDialog1.FileName);
       reset(t);
 
-      if SameText(ExtractFileExt(OpenDialog1.FileName), '.txt') then
-      begin
+      If SameText(ExtractFileExt(OpenDialog1.FileName), '.txt') Then
+      Begin
         arquivotxt := TStringList.Create;
-        try
+        Try
           arquivotxt.LoadFromFile(OpenDialog1.FileName);
           importarController := TImportarClienteController.Create;
-          try
+          Try
             ListaObj := importarController.importarTXT(arquivotxt);
 
             tmpDataSource := criarDataSource(ListaObj);
             DBGrid1.DataSource := tmpDataSource;
-          finally
+          Finally
             importarController.Free;
-          end;
-        finally
+          End;
+        Finally
           arquivotxt.Free;
-        end;
-      end
-      else if SameText(ExtractFileExt(OpenDialog1.FileName), '.xlsx') then
-      begin
+        End;
+      End
+      Else If SameText(ExtractFileExt(OpenDialog1.FileName), '.xlsx') Then
+      Begin
         importarController := TImportarClienteController.Create;
-        try
+        Try
           ListaObj := importarController.importarExcel(OpenDialog1.FileName);
 
           tmpDataSource := criarDataSource(ListaObj);
           DBGrid1.DataSource := tmpDataSource;
-        finally
+        Finally
           importarController.Free;
-        end;
-      end
-      else if SameText(ExtractFileExt(OpenDialog1.FileName), '.xml') then
-      begin
+        End;
+      End
+      Else If SameText(ExtractFileExt(OpenDialog1.FileName), '.xml') Then
+      Begin
         importarController := TImportarClienteController.Create;
-        try
+        Try
           ListaObj := importarController.importarXml(OpenDialog1.FileName);
 
           tmpDataSource := criarDataSource(ListaObj);
           DBGrid1.DataSource := tmpDataSource;
-        finally
+        Finally
           importarController.Free;
-        end;
-      end
-      else
+        End;
+      End
+      Else
         ShowMessage('Arquivo inválido');
-    end;
-  finally
+    End;
+  Finally
     btmGravarImportar.Visible := True;
     CloseFile(t);
-  end;
-end;
+  End;
+End;
 
-function TViewImportar.criarDataSource(ListaObj: TObjectList): TDataSource;
-var
-  tmpClientDataSet :TClientDataSet;
-  tmpDataSource :TDataSource;
-  i :integer;
-begin
-      tmpClientDataSet := TClientDataSet.Create(Self);
-      tmpDataSource := TDataSource.Create(Self);
-      tmpClientDataSet.FieldDefs.Add('Id', ftInteger);
-      tmpClientDataSet.FieldDefs.Add('Nome', ftString, 50);
-      tmpClientDataSet.FieldDefs.Add('Telefone', ftString, 20);
-      tmpClientDataSet.CreateDataSet;
+Function TViewImportar.criarDataSource(ListaObj: TObjectList): TDataSource;
+Var
+  tmpClientDataSet: TClientDataSet;
+  tmpDataSource: TDataSource;
+  i: integer;
+Begin
+  tmpClientDataSet := TClientDataSet.Create(Self);
+  tmpDataSource := TDataSource.Create(Self);
+  tmpClientDataSet.FieldDefs.Add('Id', ftInteger);
+  tmpClientDataSet.FieldDefs.Add('Nome', ftString, 50);
+  tmpClientDataSet.FieldDefs.Add('Telefone', ftString, 20);
+  tmpClientDataSet.CreateDataSet;
 
-      for i := 0 to ListaObj.Count - 1 do
-        begin
-          tmpClientDataSet.Append;
-          tmpClientDataSet.FieldByName('Id').AsInteger := TModelCliente(ListaObj[i]).Id;
-          tmpClientDataSet.FieldByName('nome').AsString := TModelCliente(ListaObj[i]).Nome;
-          tmpClientDataSet.FieldByName('telefone').AsString := TModelCliente(ListaObj[i]).Telefone;
-          tmpClientDataSet.Post;
-        end;
+  For i := 0 To ListaObj.Count - 1 Do
+  Begin
+    tmpClientDataSet.Append;
+    tmpClientDataSet.FieldByName('Id').AsInteger := TModelCliente(ListaObj[i]).Id;
+    tmpClientDataSet.FieldByName('nome').AsString := TModelCliente(ListaObj[i]).Nome;
+    tmpClientDataSet.FieldByName('telefone').AsString := TModelCliente(ListaObj[i]).Telefone;
+    tmpClientDataSet.Post;
+  End;
 
-        tmpDataSource.DataSet := tmpClientDataSet;
-        DBGrid1.DataSource := tmpDataSource;
+  tmpDataSource.DataSet := tmpClientDataSet;
+  DBGrid1.DataSource := tmpDataSource;
 
-      Result := tmpDataSource;
-end;
+  Result := tmpDataSource;
+End;
 
-end.
+End.
+

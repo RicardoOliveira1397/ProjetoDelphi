@@ -95,14 +95,13 @@ begin
     with quBuscarCliente do
     begin
       Close;
+      SQL.Clear;
       SQL.Text := 'SELECT id, nome, telefone ' +
                   'FROM clientes ' +
-                  'WHERE nomes LIKE :nome';
+                  'WHERE nome LIKE :nome';
       Parameters.ParamByName('nome').DataType := ftString;
       Parameters.ParamByName('nome').Value := '%' + nome + '%';
-
       Prepared := True;
-
       Open;
       Result := quBuscarCliente;
     end;
@@ -111,7 +110,7 @@ begin
     on E: Exception do
     begin
       quBuscarCliente.Connection.RollbackTrans;
-      raise;
+      raise; // Re-raise the exception after rollback
     end;
   end;
 end;
